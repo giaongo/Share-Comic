@@ -1,10 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        190: "190px",
+        275: "275px",
+        300: "300px",
+        340: "340px",
+        350: "350px",
+        450: "450px",
+        656: "656px",
+        880: "880px",
+        508: "508px",
+      },
+      backgroundColor: {
+        mainColor: "#D37E7E",
+        pinkOverlay: "rgba(248,222,222,0.5)",
+        loginContainer: "#F9F0F0",
+      },
+    },
   },
   plugins: [],
-}
+};
