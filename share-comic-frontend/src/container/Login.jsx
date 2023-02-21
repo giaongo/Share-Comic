@@ -19,7 +19,7 @@ const Login = () => {
         />
         <div className="absolute top-0 right-0 left-0 bottom-0 bg-pinkOverlay" />
       </div>
-      <div className="self-center absolute w-450 top-1/3 bg-loginContainer p-5 flex justify-center 
+      <div className="self-center absolute w-450 top-1/3 bg-loginContainer p-10 flex justify-center 
       items-center rounded-lg drop-shadow-xl">
         <div>
           <img src={appLogo} width="130px" alt="logo"/>
