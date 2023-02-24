@@ -1,7 +1,7 @@
 import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 
-export const client = createClient({
+const client = createClient({
   projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
   dataset: "production",
   apiVersion: "2023-02-22",
@@ -10,4 +10,15 @@ export const client = createClient({
 });
 
 const builder = imageUrlBuilder(client);
-export const urlFor = (source) => builder.image(source);
+const urlFor = (source) => builder.image(source);
+
+const createUser = async (userDoc) => {
+  try {
+    const result = await client.createIfNotExists(userDoc);
+    console.log("User created successfully", result);
+  } catch (error) {
+    console.log("errorCreatingUser", error);
+  }
+};
+
+export {urlFor, createUser}
