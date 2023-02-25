@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import bannerVideo from "../assets/video_banner.mp4";
 import appLogo from "../assets/logo.png";
 import { GoogleLogin } from "@react-oauth/google";
-import LoginGithub from "../components/LoginGithub";
+import { useUser } from "../client";
+import { Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { MainContext } from "../MainContext";
 const { OAuth2Client } = require("google-auth-library");
 
 const Login = () => {
+  const { createUser } = useUser();
+  const navigate = useNavigate();
+  const { setUser } = useContext(MainContext);
+  const [alertVisible, setAlerVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("");
+
   const getDecodedOAuthJwtGoogle = async (token) => {
     const CLIENT_ID_GOOGLE = process.env.REACT_APP_GOOGLE_CLIENTID;
     try {
@@ -19,6 +29,7 @@ const Login = () => {
       console.log("errorDecodingJwt", error);
     }
   };
+
   return (
     <div
       id="loginContainer"
@@ -40,49 +51,41 @@ const Login = () => {
       items-center rounded-lg drop-shadow-xl"
       >
         <div className="">
-          <img
-            src={appLogo}
-            alt="logo"
-            width="150"
-            className="m-auto mb-5"
-          />
+          <img src={appLogo} alt="logo" width="150" className="m-auto mb-5" />
           <GoogleLogin
             theme="outline"
             shape="circle"
             onSuccess={async (credentialResponse) => {
-              const decodedResult = await getDecodedOAuthJwtGoogle(
-                credentialResponse.credential
-              );
-              const user = decodedResult.payload;
-              const userDoc = {
-                _id: user.sub,
-                _type: "user",
-                username: user.name,
-                email: user.email,
-                image: user.picture,
-              };
-              console.log("user is", userDoc);
+              try {
+                const decodedResult = await getDecodedOAuthJwtGoogle(
+                  credentialResponse.credential
+                );
+                const user = decodedResult.payload;
+                const userDoc = {
+                  _id: user.sub,
+                  _type: "user",
+                  username: user.name,
+                  email: user.email,
+                  image: user.picture,
+                };
+                const result = await createUser(userDoc);
+                localStorage.setItem("user", JSON.stringify(result));
+                setUser(JSON.stringify(result));
+                navigate("/");
+              } catch (error) {
+                console.error("ErrorCreatingUser", error);
+              }
             }}
             onError={() => {
-              console.log("Login Failed");
+              setAlerVisible(true);
+              setAlertSeverity("error");
+              setAlertMessage("Login Failed");
             }}
           />
-          <LoginGithub />
-          {/* <LoginGithub
-            className="bg-black text-white p-5 mt-5 w-full"
-            clientId={process.env.REACT_APP_GITHUB_CLIENTID}
-            onSuccess={async (result) => {
-              console.log("successful login", result);
-              const options = {
-                method: "POST",
-                body: JSON.stringify(result),
-              };
-              const response = await fetch(process.env.REACT_APP_PROXY_URL, options);
-              const json = await response.json();
-              console.log("data is", json);
-            }}
-            onFailure={(result) => console.log("login failed", result)}
-          /> */}
+
+          {alertVisible && (
+            <Alert severity={alertSeverity}>{alertMessage}</Alert>
+          )}
         </div>
       </div>
     </div>

@@ -16,10 +16,14 @@ module.exports = {
         880: "880px",
         508: "508px",
       },
+      textColor: {
+        lightGrey:"#fafbfc"
+      },
       backgroundColor: {
         mainColor: "#D37E7E",
         pinkOverlay: "rgba(248,120,120,0.3)",
         loginContainer: "#F9F0F0",
+        githubBtnBg: "#292b29"
       },
     },
   },
