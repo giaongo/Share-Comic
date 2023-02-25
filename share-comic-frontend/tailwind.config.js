@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     extend: {
       width: {
+        120: "120px",
+        150: "150px",
         190: "190px",
         275: "275px",
         300: "300px",
@@ -14,10 +16,14 @@ module.exports = {
         880: "880px",
         508: "508px",
       },
+      textColor: {
+        lightGrey:"#fafbfc"
+      },
       backgroundColor: {
         mainColor: "#D37E7E",
-        pinkOverlay: "rgba(248,222,222,0.5)",
+        pinkOverlay: "rgba(248,120,120,0.3)",
         loginContainer: "#F9F0F0",
+        githubBtnBg: "#292b29"
       },
     },
   },

@@ -3,20 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.9",
+    "@mui/material": "^5.11.10",
+    "@react-oauth/google": "^0.7.1",
+    "@sanity/client": "^4.0.0",
+    "@sanity/image-url": "^1.0.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "google-auth-library": "^8.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4",
+    "react-login-github": "^1.0.8",
+    "react-router-dom": "^6.8.1",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start && postcss src/index.css -o",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,6 +46,11 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.2.7"
+    "@craco/craco": "^6.4.5",
+    "autoprefixer": "^9.8.8",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.32.2",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }
