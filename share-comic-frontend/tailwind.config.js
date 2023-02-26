@@ -23,7 +23,8 @@ module.exports = {
         mainColor: "#D37E7E",
         pinkOverlay: "rgba(248,120,120,0.3)",
         loginContainer: "#F9F0F0",
-        githubBtnBg: "#292b29"
+        lightPinkBg: "#F9F0F0" 
+
       },
     },
   },
