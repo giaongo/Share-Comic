@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import bannerVideo from "../assets/video_banner.mp4";
 import appLogo from "../assets/logo.png";
 import { GoogleLogin } from "@react-oauth/google";

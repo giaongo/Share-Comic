@@ -10,7 +10,9 @@ import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import {useNavigate} from "react-router-dom";
 const NavBar = ({ userData }) => {
+  const navigate = useNavigate();
   return (
     <div className="bg-white p-3 flex justify-evenly items-center">
       <Fab aria-label="add" className="bg-black">
@@ -26,7 +28,7 @@ const NavBar = ({ userData }) => {
           <SearchIcon />
         </IconButton>
       </div>
-      <div className="cursor-pointer">
+      <div className="cursor-pointer" onClick={() => navigate('/user-profile')}>
         <ListItem>
           <ListItemAvatar>
             <Avatar src={userData && userData.image} alt="profile" />
