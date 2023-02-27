@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontSize: {
+        ssm: "0.5rem",
+      },
       width: {
         120: "120px",
         150: "150px",
@@ -18,14 +21,13 @@ module.exports = {
         2000: "2000px",
       },
       textColor: {
-        lightGrey:"#fafbfc"
+        lightGrey: "#fafbfc",
       },
       backgroundColor: {
         mainColor: "#D37E7E",
         pinkOverlay: "rgba(248,120,120,0.3)",
         loginContainer: "#F9F0F0",
-        lightPinkBg: "#F9F0F0" 
-
+        lightPinkBg: "#F9F0F0",
       },
     },
   },

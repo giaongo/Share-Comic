@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ThemeProvider } from "@mui/system";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./container/Home";
 import Login from "./container/Login";
@@ -20,6 +20,9 @@ const App = () => {
         main: green[500],
       },
     },
+    typography: {
+      fontSize: "0.5rem",
+    },
   });
   const checkUserLoggedIn = async () => {
     const userId = localStorage.getItem("user")
@@ -27,7 +30,7 @@ const App = () => {
       : null;
     if (userId) {
       const userResult = await getUser(userId);
-      navigate("/", { state: userResult[0]});
+      navigate("/", { state: userResult[0] });
     } else {
       navigate("login");
     }

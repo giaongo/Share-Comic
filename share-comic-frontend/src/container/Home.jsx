@@ -9,18 +9,33 @@ import Sidebar from "../components/Sidebar";
 const Home = () => {
   const location = useLocation();
   const [user, setUser] = useState({});
-
+  const [toggleSideBar, setToggleSideBar] = useState(false);
   useEffect(() => {
     setUser(location.state);
   }, []);
 
   return (
     <div className="h-screen flex grow-1">
-      <div className="h-screen flex overflow-y-auto">
-        <Sidebar />
+      <div className="h-screen hidden sm:flex overflow-y-auto">
+        <Sidebar
+          toggleSidebar={toggleSideBar}
+          setToggleSidebar={setToggleSideBar}
+        />
+      </div>
+      <div className="h-screen flex sm:hidden overflow-y-auto">
+        {toggleSideBar && (
+          <Sidebar
+            toggleSidebar={toggleSideBar}
+            setToggleSidebar={setToggleSideBar}
+          />
+        )}
       </div>
       <div className="bg-lightPinkBg w-full">
-        <NavBar userData={user} />
+        <NavBar
+          userData={user}
+          toggleSidebar={toggleSideBar}
+          setToggleSidebar={setToggleSideBar}
+        />
         <Routes>
           <Route path="/*" element={<Posts />} />
           <Route path="/user-profile" element={<Profile />} />

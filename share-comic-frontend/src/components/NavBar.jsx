@@ -10,11 +10,25 @@ import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import {useNavigate} from "react-router-dom";
-const NavBar = ({ userData }) => {
+import { useNavigate } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+
+const NavBar = ({ userData, toggleSidebar, setToggleSidebar }) => {
   const navigate = useNavigate();
+
   return (
     <div className="bg-white p-3 flex justify-evenly items-center">
+      {!toggleSidebar && (
+        <div className="sm:hidden flex">
+          <IconButton
+            color="primary"
+            onClick={() => setToggleSidebar(!toggleSidebar)}
+          >
+            <MenuIcon />
+          </IconButton>
+        </div>
+      )}
+
       <Fab aria-label="add" className="bg-black">
         <AddIcon />
       </Fab>
@@ -28,7 +42,7 @@ const NavBar = ({ userData }) => {
           <SearchIcon />
         </IconButton>
       </div>
-      <div className="cursor-pointer" onClick={() => navigate('/user-profile')}>
+      <div className="cursor-pointer" onClick={() => navigate("/user-profile")}>
         <ListItem>
           <ListItemAvatar>
             <Avatar src={userData && userData.image} alt="profile" />
