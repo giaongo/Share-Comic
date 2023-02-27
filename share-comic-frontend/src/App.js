@@ -1,32 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ThemeProvider } from "@mui/system";
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./container/Home";
 import Login from "./container/Login";
-import { MainProvider } from "./MainContext";
 import { createTheme } from "@mui/material/styles";
-import { green,} from "@mui/material/colors";
+import { green } from "@mui/material/colors";
+import { useUser } from "./client";
 
 const App = () => {
   const navigate = useNavigate();
-
+  const { getUser } = useUser();
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#D37E7E',
+        main: "#D37E7E",
       },
       secondary: {
         main: green[500],
       },
     },
   });
-  const checkUserLoggedIn = () => {
-    const user = localStorage.getItem("user")
+  const checkUserLoggedIn = async () => {
+    const userId = localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user"))
       : null;
-    if (user) {
-      navigate("/");
+    if (userId) {
+      const userResult = await getUser(userId);
+      navigate("/", { state: userResult[0]});
     } else {
       navigate("login");
     }
@@ -38,12 +39,10 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <MainProvider>
-        <Routes>
-          <Route path="login" element={<Login />} />
-          <Route path="/*" element={<Home />} />
-        </Routes>
-      </MainProvider>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="/*" element={<Home />} />
+      </Routes>
     </ThemeProvider>
   );
 };

@@ -14,10 +14,20 @@ export const urlFor = (source) => builder.image(source);
 export const useUser = () => {
   const createUser = async (userDoc) => {
     try {
-      return await client.createIfNotExists(userDoc)
+      return await client.createIfNotExists(userDoc);
     } catch (error) {
       throw new Error("errorCreatingUser", error);
     }
   };
-  return {createUser}
+  const getUser = async (userId) => {
+    try {
+      const user = await client.fetch(
+        `*[_type == "user" && _id =='${userId}']`
+      );
+      return user;
+    } catch (error) {
+      console.error("gettingUserError", error);
+    }
+  };
+  return { createUser, getUser };
 };

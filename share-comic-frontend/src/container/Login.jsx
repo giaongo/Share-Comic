@@ -5,13 +5,11 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useUser } from "../client";
 import { Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { MainContext } from "../MainContext";
 const { OAuth2Client } = require("google-auth-library");
 
 const Login = () => {
   const { createUser } = useUser();
   const navigate = useNavigate();
-  const { setUser } = useContext(MainContext);
   const [alertVisible, setAlerVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState("");
@@ -69,9 +67,8 @@ const Login = () => {
                   image: user.picture,
                 };
                 const result = await createUser(userDoc);
-                localStorage.setItem("user", JSON.stringify(result));
-                setUser(JSON.stringify(result));
-                navigate("/");
+                localStorage.setItem("user", JSON.stringify(result._id));
+                navigate("/", { state: result});
               } catch (error) {
                 console.error("ErrorCreatingUser", error);
               }
