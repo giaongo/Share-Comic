@@ -33,14 +33,7 @@ const Sidebar = ({ user }) => {
         </ListItem>
       ))}
 
-      <div>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar src="" alt="profile" />
-          </ListItemAvatar>
-          <ListItemText primary="" />
-        </ListItem>
-      </div>
+
     </div>
   );
 };
