@@ -9,9 +9,9 @@ import React from "react";
 import appLogo from "../assets/logo.png";
 import HomeIcon from "@mui/icons-material/Home";
 import { categories } from "../utils/data";
-const Sidebar = ({user}) => {
+const Sidebar = ({ user }) => {
   return (
-    <div className="relative h-screen w-275 bg-white">
+    <div className="w-340 bg-white">
       <img src={appLogo} alt="logo" width="120" className="m-auto mb-5 pt-5" />
       <div className="flex w-full justify-center mb-5 cursor-pointer">
         <HomeIcon />
@@ -32,14 +32,14 @@ const Sidebar = ({user}) => {
           <ListItemText primary={category.category} />
         </ListItem>
       ))}
-      <div className="w-full absolute bottom-5">
+
+      <div>
         <ListItem>
-            <ListItemAvatar>
-                <Avatar src="" alt="profile" />
-            </ListItemAvatar>
-            <ListItemText primary="" />
+          <ListItemAvatar>
+            <Avatar src="" alt="profile" />
+          </ListItemAvatar>
+          <ListItemText primary="" />
         </ListItem>
-       
       </div>
     </div>
   );

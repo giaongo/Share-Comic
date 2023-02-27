@@ -15,6 +15,7 @@ module.exports = {
         656: "656px",
         880: "880px",
         508: "508px",
+        2000: "2000px",
       },
       textColor: {
         lightGrey:"#fafbfc"
