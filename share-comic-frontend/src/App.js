@@ -29,9 +29,6 @@ const App = () => {
           subtitle: {
             fontSize: 10,
           },
-          actionIcon: {
-            fontSize:10,
-          }
         },
       },
     },

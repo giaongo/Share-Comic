@@ -22,6 +22,7 @@ module.exports = {
       },
       textColor: {
         lightGrey: "#fafbfc",
+        mainPink:"#D37E7E",
       },
       backgroundColor: {
         mainColor: "#D37E7E",

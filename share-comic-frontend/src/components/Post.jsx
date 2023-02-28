@@ -1,14 +1,24 @@
-import React from "react";
-import {
-    IconButton,
-    ImageListItem,
-    ImageListItemBar,
-  } from "@mui/material";
+import React, { useState } from "react";
+import { IconButton, ImageListItem, ImageListItemBar } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
-const Post = ({item}) => {
+import FavoriteIcon from "@mui/icons-material/Favorite";
+const Post = ({ item }) => {
+  const [markedFavorite, setMarkFavorite] = useState(false);
+  const [showPostInfo, setShowPostInfo] = useState(false);
+  const likePost = () => {
+    setMarkFavorite(!markedFavorite);
+    console.log("I am liking the file");
+  };
+  const dislikePost = () => {
+    setMarkFavorite(!markedFavorite);
+    console.log("I am disliking the file");
+  };
   return (
-    <ImageListItem key={item.img}>
+    <ImageListItem
+      key={item.img}
+      onMouseEnter={() => setShowPostInfo(true)}
+      onMouseLeave={() => setShowPostInfo(false)}
+    >
       <img
         src={`${item.img}?w=248&fit=crop&auto=format`}
         srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -16,16 +26,28 @@ const Post = ({item}) => {
         height="100%"
         loading="eager"
       />
-      <ImageListItemBar
-        actionPosition="right"
-        title={item.title}
-        subtitle="Giao"
-        actionIcon={
-          <IconButton onClick={() => console.log("clicked")}>
-            <FavoriteBorderIcon color="info" />
-          </IconButton>
-        }
-      />
+      {showPostInfo && (
+        <ImageListItemBar
+          actionPosition="right"
+          title={item.title}
+          subtitle="by Giao"
+          actionIcon={
+            <IconButton
+              size="large"
+              onClick={() => {
+                !markedFavorite ? likePost() : dislikePost();
+              }}
+            >
+              {markedFavorite ? (
+                <FavoriteIcon color="primary" fontSize="inherit" />
+              ) : (
+                <FavoriteBorderIcon color="primary" />
+              )}
+              <span className="text-sm text-mainPink ml-1">1</span>
+            </IconButton>
+          }
+        />
+      )}
     </ImageListItem>
   );
 };
