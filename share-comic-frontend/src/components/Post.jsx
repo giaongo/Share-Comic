@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { IconButton, ImageListItem, ImageListItemBar } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import ClearIcon from "@mui/icons-material/Clear";
+
 const Post = ({ item }) => {
   const [markedFavorite, setMarkFavorite] = useState(false);
   const [showPostInfo, setShowPostInfo] = useState(false);
@@ -34,6 +36,7 @@ const Post = ({ item }) => {
           actionIcon={
             <IconButton
               size="large"
+              aria-label="save to favorite"
               onClick={() => {
                 !markedFavorite ? likePost() : dislikePost();
               }}
@@ -48,6 +51,15 @@ const Post = ({ item }) => {
           }
         />
       )}
+      <ImageListItemBar
+        position="top"
+        actionIcon={
+          <IconButton size="sm" aria-label="delete">
+            <ClearIcon
+            />
+          </IconButton>
+        }
+      />
     </ImageListItem>
   );
 };

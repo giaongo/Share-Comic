@@ -29,6 +29,9 @@ const App = () => {
           subtitle: {
             fontSize: 10,
           },
+          positionTop: {
+            background:"transparent"
+          }
         },
       },
     },
