@@ -13,7 +13,7 @@ import { categories } from "../utils/data";
 import CancelIcon from "@mui/icons-material/Cancel";
 const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
   return (
-    <div className="w-340 bg-white overflow-x-hidden">
+    <div className="w-340 bg-white overflow-x-hidden animate-slide-in">
       <div className="sm:hidden flex">
         <IconButton
           color="primary"
@@ -39,7 +39,7 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
           <ListItemAvatar className="hidden sm:flex">
             <Avatar src={category.image} alt={category.category} />
           </ListItemAvatar>
-          <ListItemText primary={category.category} sx={{fontSize:10}} />
+          <ListItemText primary={category.category} sx={{fontSize:14}} />
         </ListItem>
       ))}
     </div>

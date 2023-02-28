@@ -29,6 +29,21 @@ module.exports = {
         loginContainer: "#F9F0F0",
         lightPinkBg: "#F9F0F0",
       },
+      keyframes: {
+        "slide-in": {
+          "0%": {
+            "-webkit-transform": "translateX(-100px)",
+            tranform: "translateX(-100px)",
+          },
+          "100%": {
+            "-webkit-transform": "translateX(0px)",
+            tranform: "translateX(0px)",
+          },
+        },
+      },
+      animation: {
+        "slide-in": "slide-in 0.5s ease-in",
+      },
     },
   },
   plugins: [],

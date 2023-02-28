@@ -17,7 +17,7 @@ const NavBar = ({ userData, toggleSidebar, setToggleSidebar }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white p-3 flex justify-evenly items-center">
+    <div className=" relative bg-white p-3 flex justify-evenly items-center">
       {!toggleSidebar && (
         <div className="sm:hidden flex">
           <IconButton
@@ -28,11 +28,12 @@ const NavBar = ({ userData, toggleSidebar, setToggleSidebar }) => {
           </IconButton>
         </div>
       )}
-
-      <Fab aria-label="add" className="bg-black">
-        <AddIcon />
-      </Fab>
-      <div className="w-4/6 bg-gray-200 flex rounded-full">
+      <div className="hidden sm:flex">
+        <Fab aria-label="add" className="bg-black">
+          <AddIcon />
+        </Fab>
+      </div>
+      <div className="w-4/6 bg-gray-200 flex rounded-full mx-2">
         <InputBase
           sx={{ ml: 1, flex: 1, width: "100%", p: "5px" }}
           placeholder="Search posts"
