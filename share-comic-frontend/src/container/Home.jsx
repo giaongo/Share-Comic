@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="h-screen flex grow-1">
+    <div className="h-screen flex grow-1 overflow-hidden">
       <div className="h-screen hidden sm:flex overflow-y-auto">
         <Sidebar
           toggleSidebar={toggleSideBar}

@@ -21,7 +21,19 @@ const App = () => {
       },
     },
     typography: {
-      fontSize: "0.5rem",
+      fontSize: 12,
+    },
+    components: {
+      MuiImageListItemBar: {
+        styleOverrides: {
+          subtitle: {
+            fontSize: 10,
+          },
+          actionIcon: {
+            fontSize:10,
+          }
+        },
+      },
     },
   });
   const checkUserLoggedIn = async () => {
